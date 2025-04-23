@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: lecture-mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: lecture
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - lecture-net
+
+  vault:
+    image: hashicorp/vault:1.14.4
+    container_name: lecture-vault
+    cap_add:
+      - IPC_LOCK
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: myroot
+      VAULT_DEV_LISTEN_ADDRESS: "0.0.0.0:8200"
+    ports:
+      - "8200:8200"
+    networks:
+      - lecture-net
+
+volumes:
+  mysql_data:
+
+networks:
+  lecture-net:

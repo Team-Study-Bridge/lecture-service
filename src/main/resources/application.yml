@@ -1,0 +1,50 @@
+spring:
+  config:
+    import: "vault://"
+  application:
+    name: lecture-service
+  cloud:
+    vault:
+      uri: http://localhost:8200
+      token: myroot
+      kv:
+        enabled: true
+        backend: secret
+        application-name: lecture-service
+        profile-separator: '/'
+        version: 2
+  datasource:
+    url: jdbc:mysql://localhost:3307/lecture?serverTimezone=UTC&useSSL=false
+    username: root
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  servlet:
+    multipart:
+      enabled: true
+
+cloud:
+  aws:
+    credentials:
+      access-key: ${aws.access-key}
+      secret-key: ${aws.secret-key}
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    s3:
+      bucket: aigongbu-lecture-files
+
+file:
+  upload-dir: "C:/upload_files"
+
+server:
+  port: 9004
+
+logging:
+  level:
+    org.springframework.cloud.vault: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
