@@ -1,6 +1,5 @@
 package com.example.lectureservice.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,10 +18,9 @@ public class LectureContent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    private Lecture lecture;
+    // ✅ Lecture 객체 대신 FK 값만 보관
+    @Column(name = "product_id", nullable = false)
+    private Long lectureId;
 
     @Column(name = "section", nullable = false)
     private int section;
@@ -33,23 +31,21 @@ public class LectureContent {
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "video_url")
-    private String videoUrl;
-
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @PrePersist
-    public void prePersist() {
-        createdAt = LocalDateTime.now();
-        updatedAt = createdAt;
+    public void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = this.createdAt;
     }
 
     @PreUpdate
-    public void preUpdate() {
-        updatedAt = LocalDateTime.now();
+    public void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
     }
 }
+

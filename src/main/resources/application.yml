@@ -1,3 +1,5 @@
+server:
+  port: 9004
 spring:
   config:
     import: "vault://"
@@ -5,6 +7,7 @@ spring:
     name: lecture-service
   cloud:
     vault:
+#      uri: http://team-vault:8200
       uri: http://localhost:8200
       token: myroot
       kv:
@@ -14,9 +17,10 @@ spring:
         profile-separator: '/'
         version: 2
   datasource:
-    url: jdbc:mysql://localhost:3307/lecture?serverTimezone=UTC&useSSL=false
+#    url: jdbc:mysql://team-mysql:3306/lecture?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://localhost:3307/lecture?allowPublicKeyRetrieval=true&useSSL=false
     username: root
-    password: 1234
+    password: 12341234
   jpa:
     hibernate:
       ddl-auto: update
@@ -24,12 +28,14 @@ spring:
   servlet:
     multipart:
       enabled: true
+      max-file-size: 200MB        # 단일 파일 최대 크기
+      max-request-size: 250MB
 
 cloud:
   aws:
     credentials:
-      access-key: ${aws.access-key}
-      secret-key: ${aws.secret-key}
+      access-key: AKIA4ZPZVM5RZEZJRN5J
+      secret-key: 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
     region:
       static: ap-northeast-2
     stack:
@@ -40,8 +46,9 @@ cloud:
 file:
   upload-dir: "C:/upload_files"
 
-server:
-  port: 9004
+team:
+#  auth-service-url: http://auth-service:9001
+  auth-service-url: http://localhost:9001
 
 logging:
   level:

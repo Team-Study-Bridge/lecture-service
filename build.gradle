@@ -58,10 +58,15 @@ jacocoTestCoverageVerification {
     }
 }
 
+ext {
+    set('springCloudVersion', "2024.0.1")  // Spring Cloud 의존성 버전 변수
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
     // AWS SDK for S3 (v2) - 의존성 누락 방지
     implementation 'software.amazon.awssdk:s3'

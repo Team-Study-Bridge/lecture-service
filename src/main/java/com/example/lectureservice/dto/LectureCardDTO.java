@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LectureCardDto {
+public class LectureCardDTO {
     private Long lectureId;         // 강의 ID
     private String title;           // 강의 제목
     private String category;        // 카테고리

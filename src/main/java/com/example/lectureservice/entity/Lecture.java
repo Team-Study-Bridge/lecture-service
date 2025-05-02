@@ -1,11 +1,9 @@
 package com.example.lectureservice.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -23,6 +21,9 @@ public class Lecture {
     @Column(name = "instructor_id", nullable = false)
     private Long instructorId;
 
+    @Column(name = "instructor_name", nullable = false)
+    private String instructorName;
+
     @Column(name = "title", nullable = false)
     private String title;
 
@@ -30,7 +31,7 @@ public class Lecture {
     private String description;
 
     @Column(name = "price", nullable = false)
-    private Double price;
+    private Integer price;
 
     @Column(name = "category", nullable = false)
     private String category;
@@ -42,30 +43,25 @@ public class Lecture {
     @Column(name = "status", nullable = false)
     private LectureStatus status;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "lecture", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LectureContent> contents;
+    @Column(name = "video_url")
+    private String videoUrl;
 
     @PrePersist
-    public void prePersist() {
-        createdAt = LocalDateTime.now();
-        updatedAt = createdAt;
-        if (price == null) {
-            price = 0.0;
-        }
-        if (status == null) {
-            status = LectureStatus.PENDING;
-        }
+    public void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = this.createdAt;
+        if (this.price == null) this.price = 0;
+        if (this.status == null) this.status = LectureStatus.PENDING;
     }
 
     @PreUpdate
-    public void preUpdate() {
-        updatedAt = LocalDateTime.now();
+    public void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
     }
 }
