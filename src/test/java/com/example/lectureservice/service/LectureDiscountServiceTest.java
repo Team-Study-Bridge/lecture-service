@@ -84,7 +84,7 @@ class LectureDiscountServiceTest {
         assertEquals(beforeStock + 1, updated.getDiscountStock());
     }
 
-    @Test
+    @Test // test
     @DisplayName("할인 정보가 없을 경우 예외가 발생한다")
     void 할인정보가_없으면_예외발생() {
         // given
