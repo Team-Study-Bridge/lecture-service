@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ActiveProfiles("test")
-@TestPropertySource(locations = "classpath:application-test.yaml")
 @Transactional
 @DisplayName("LectureDiscountService 일반 테스트")
 class LectureDiscountServiceTest {

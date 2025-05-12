@@ -1,6 +1,4 @@
 spring:
-  config:
-    import: "optional:classpath:/"
   datasource:
     url: jdbc:mysql://mysql:3306/lecture
     username: root
