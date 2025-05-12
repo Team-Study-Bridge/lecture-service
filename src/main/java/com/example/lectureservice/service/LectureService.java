@@ -4,6 +4,7 @@ import com.example.lectureservice.config.client.AuthServiceClient;
 import com.example.lectureservice.dto.InstructorProfileResponseDTO;
 import com.example.lectureservice.dto.LectureCardDTO;
 import com.example.lectureservice.dto.LectureDetailResponseDTO;
+import com.example.lectureservice.dto.LectureResponse;
 import com.example.lectureservice.entity.Lecture;
 import com.example.lectureservice.entity.LectureContent;
 import com.example.lectureservice.entity.LectureStatus;
@@ -16,11 +17,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -167,5 +171,11 @@ public class LectureService {
                 .build();
 
         return ResponseEntity.ok(response);
+    }
+
+    public LectureResponse findById(Long id) {
+        Lecture lecture = lectureRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "강의를 찾을 수 없습니다."));
+        return new LectureResponse(lecture.getId(), lecture.getTitle(), lecture.getInstructorName());
     }
 }

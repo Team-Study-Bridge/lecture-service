@@ -94,3 +94,61 @@ dependencyManagement {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:2023.0.1"
     }
 }
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacoco {
+    toolVersion = "0.8.10"
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        html.required.set(true)
+        xml.required.set(true)
+        csv.required.set(true)
+        html.outputLocation.set(file("$buildDir/reports/jacoco"))
+    }
+    classDirectories.setFrom(
+            files(fileTree(
+                    dir: "$buildDir/classes/java/main",
+                    includes: [
+                            'com/example/lectureservice/service/**'
+                    ],
+                    excludes: [
+                            'com/example/lectureservice/service/LectureService*',
+                            'com/example/lectureservice/service/FileStorageService*'
+                    ]
+            ))
+    )
+}
+
+jacocoTestCoverageVerification {
+    classDirectories.setFrom(
+            files(fileTree(
+                    dir: "$buildDir/classes/java/main",
+                    includes: [
+                            'com/example/lectureservice/service/**'
+                    ],
+                    excludes: [
+                            'com/example/lectureservice/service/LectureService*',
+                            'com/example/lectureservice/service/FileStorageService*'
+                    ]
+            ))
+    )
+    violationRules {
+        rule {
+            element = 'CLASS'
+            limit {
+                counter = 'INSTRUCTION'
+                value = 'COVEREDRATIO'
+                minimum = 0.8
+            }
+        }
+    }
+}
+
+check.dependsOn jacocoTestCoverageVerification

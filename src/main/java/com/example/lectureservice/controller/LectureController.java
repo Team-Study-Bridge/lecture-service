@@ -2,6 +2,7 @@ package com.example.lectureservice.controller;
 
 import com.example.lectureservice.dto.LectureCardDTO;
 import com.example.lectureservice.dto.LectureDetailResponseDTO;
+import com.example.lectureservice.dto.LectureResponse;
 import com.example.lectureservice.service.LectureService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -48,5 +49,10 @@ public class LectureController {
             @PathVariable Long lectureId
     ) {
         return lectureService.getLectureDetail(accessToken, lectureId);
+    }
+
+    @GetMapping("/{id}")
+    public LectureResponse getLectureById(@PathVariable Long id) {
+        return lectureService.findById(id);
     }
 }
