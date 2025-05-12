@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(classes = {LectureDiscountService.class})
+@SpringBootTest
 @ActiveProfiles("test")
 @Transactional
 @DisplayName("LectureDiscountService 일반 테스트")
