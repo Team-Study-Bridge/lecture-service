@@ -1,8 +1,6 @@
 package com.example.lectureservice.service;
 
 import com.example.lectureservice.LectureServiceApplication;
-import com.example.lectureservice.config.AwsS3Config;
-import com.example.lectureservice.config.WebClientConfig;
 import com.example.lectureservice.dto.LectureDiscountResponse;
 import com.example.lectureservice.entity.LectureDiscount;
 import com.example.lectureservice.repository.LectureDiscountRepository;
@@ -13,7 +11,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
@@ -26,12 +23,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @Transactional
 @DisplayName("LectureDiscountService 일반 테스트")
 class LectureDiscountServiceTest {
-
-    @MockBean
-    private AwsS3Config awsS3Config;
-
-    @MockBean
-    private WebClientConfig webClientConfig;
 
     @Autowired
     private LectureDiscountService discountService;
