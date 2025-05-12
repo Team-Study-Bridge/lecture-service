@@ -29,6 +29,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Print unresolved placeholders
+        run: grep -r '\${' src/main
+
       - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
