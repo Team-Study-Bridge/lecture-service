@@ -21,13 +21,6 @@ public class FileStorageService {
     @Value("${cloud.aws.s3.bucket}")
     private String bucketName;
 
-    // 기존 메서드: UUID 기반 랜덤 파일명
-    public String saveFile(MultipartFile file, String folder) throws IOException {
-        String originalFilename = file.getOriginalFilename();
-        String uniqueName = UUID.randomUUID() + "_" + originalFilename;
-        return saveFile(file, folder, uniqueName);
-    }
-
     // 새 메서드: 파일명 직접 지정
     public String saveFile(MultipartFile file, String folder, String fileName) throws IOException {
         String key = folder + "/" + fileName;

@@ -71,14 +71,12 @@ public class LectureService {
                 String fileName = String.format("thumbnail_%d_%d.%s", savedLecture.getId(), instructorId, ext);
                 String thumbnailUrl = fileStorageService.saveFile(thumbnailFile, "thumbnails", fileName);
                 savedLecture.setThumbnailUrl(thumbnailUrl);
-                System.out.println("filenamettt"+ fileName);
             }
             if (videoFile != null && !videoFile.isEmpty()) {
                 String ext = getExtension(videoFile.getOriginalFilename());
                 String fileName = String.format("lecture_%d_%d.%s", savedLecture.getId(), instructorId, ext);
                 String videoUrl = fileStorageService.saveFile(videoFile, "videos", fileName);
                 savedLecture.setVideoUrl(videoUrl);
-                System.out.println("filenamevvv"+ fileName);
             }
 
             lectureRepository.save(savedLecture);
