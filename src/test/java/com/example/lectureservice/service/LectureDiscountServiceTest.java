@@ -33,9 +33,6 @@ class LectureDiscountServiceTest {
     @MockBean
     private WebClientConfig webClientConfig;
 
-    @MockBean
-    private FileStorageService fileStorageService;
-
     @Autowired
     private LectureDiscountService discountService;
 
