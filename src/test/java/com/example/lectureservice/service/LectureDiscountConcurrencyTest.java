@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @ActiveProfiles("test")
-@TestPropertySource(locations = "classpath:application-test.yml")
+@TestPropertySource(locations = "classpath:application-test.yaml")
 @DisplayName("LectureDiscountService 동시성 테스트")
 class LectureDiscountConcurrencyTest {
 
