@@ -3,7 +3,6 @@ name: Java CI with Gradle
 on:
   push:
     branches:
-      - develop
       - feature/**
   pull_request:
     branches: [ "develop" ]
@@ -11,6 +10,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        ports:
+          - 3308:3306
+        env:
+          MYSQL_ROOT_PASSWORD: 1234
+          MYSQL_DATABASE: lecture
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
 
     steps:
       - name: Checkout repository
@@ -21,6 +34,17 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
+
+      - name: Wait for MySQL to be ready
+        run: |
+          echo "Waiting for MySQL..."
+          for i in {1..30}; do
+            if mysqladmin ping -h"127.0.0.1" -uroot -proot --silent; then
+              echo "MySQL is up!"
+              break
+            fi
+            sleep 2
+          done
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
