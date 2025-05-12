@@ -1,5 +1,6 @@
 package com.example.lectureservice.service;
 
+import com.example.lectureservice.LectureServiceApplication;
 import com.example.lectureservice.config.AwsS3Config;
 import com.example.lectureservice.config.WebClientConfig;
 import com.example.lectureservice.dto.LectureDiscountResponse;
@@ -24,7 +25,7 @@ import java.util.concurrent.Future;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
+@SpringBootTest(classes = LectureServiceApplication.class)
 @ActiveProfiles("test")
 @DisplayName("LectureDiscountService 동시성 테스트")
 class LectureDiscountConcurrencyTest {

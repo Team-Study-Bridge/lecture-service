@@ -1,5 +1,6 @@
 package com.example.lectureservice.service;
 
+import com.example.lectureservice.LectureServiceApplication;
 import com.example.lectureservice.config.AwsS3Config;
 import com.example.lectureservice.config.WebClientConfig;
 import com.example.lectureservice.dto.LectureDiscountResponse;
@@ -20,7 +21,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@SpringBootTest(classes = LectureServiceApplication.class)
 @ActiveProfiles("test")
 @Transactional
 @DisplayName("LectureDiscountService 일반 테스트")
