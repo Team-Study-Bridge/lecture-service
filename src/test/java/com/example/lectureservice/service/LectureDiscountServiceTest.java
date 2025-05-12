@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ActiveProfiles("test")
 @SpringBootTest
 @Transactional
-@DisplayName("LectureDiscountService 일반 테스트") //
+@DisplayName("LectureDiscountService 일반 테스트")
 class LectureDiscountServiceTest {
 
     @Autowired
