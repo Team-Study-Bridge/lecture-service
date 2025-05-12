@@ -9,7 +9,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.env.Environment;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -25,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = LectureServiceApplication.class)
 @ActiveProfiles("test")
 @DisplayName("LectureDiscountService 동시성 테스트")
+@TestPropertySource(locations = "classpath:application-test.yml")
 class LectureDiscountConcurrencyTest {
 
     @Autowired
@@ -32,6 +35,14 @@ class LectureDiscountConcurrencyTest {
 
     @Autowired
     private LectureDiscountRepository discountRepository;
+
+    @Autowired
+    Environment env;
+
+    @Test
+    void checkEnv() {
+        System.out.println("S3 bucket = " + env.getProperty("cloud.aws.s3.bucket"));
+    }
 
     @BeforeEach
     void setUp() {
