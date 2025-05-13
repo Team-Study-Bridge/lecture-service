@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.core.env.Environment;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -32,14 +31,6 @@ class LectureDiscountServiceTest {
 
     @Autowired
     private LectureDiscountRepository discountRepository;
-
-    @Autowired
-    Environment env;
-
-    @Test
-    void checkEnv() {
-        System.out.println("S3 bucket = " + env.getProperty("cloud.aws.s3.bucket"));
-    }
 
     @BeforeEach
     void setUp() {
