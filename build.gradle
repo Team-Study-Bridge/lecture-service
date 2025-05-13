@@ -43,7 +43,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    // Vault
+    // Vault 테스트 후 주석 해제
 //    implementation 'org.springframework.cloud:spring-cloud-starter-vault-config:3.1.2'
 }
 
