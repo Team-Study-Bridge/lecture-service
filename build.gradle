@@ -44,7 +44,7 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     // Vault
-    implementation 'org.springframework.cloud:spring-cloud-starter-vault-config:3.1.2'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-vault-config:3.1.2'
 }
 
 dependencyManagement {
