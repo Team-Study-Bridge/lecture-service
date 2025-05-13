@@ -8,12 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -21,11 +16,6 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ActiveProfiles("test")
-@TestPropertySource(locations = "classpath:application-test.yml")
-@EnableJpaRepositories(basePackages = "com.example.lectureservice.repository")
-@EntityScan(basePackages = "com.example.lectureservice.entity")
-@ComponentScan(basePackages = "com.example.lectureservice")
 class LectureDiscountServiceTest {
 
     @Autowired
