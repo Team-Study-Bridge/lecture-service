@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class LectureDiscountConcurrencyTest {
 
-    @Autowired
+    @Autowired //
     private LectureDiscountService discountService;
 
     @Autowired
