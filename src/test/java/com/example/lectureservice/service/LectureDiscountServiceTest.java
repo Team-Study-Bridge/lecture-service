@@ -4,7 +4,6 @@ import com.example.lectureservice.dto.LectureDiscountResponse;
 import com.example.lectureservice.entity.LectureDiscount;
 import com.example.lectureservice.repository.LectureDiscountRepository;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,8 +16,6 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@Transactional
-@DisplayName("LectureDiscountService 일반 테스트")
 class LectureDiscountServiceTest {
 
     @Autowired

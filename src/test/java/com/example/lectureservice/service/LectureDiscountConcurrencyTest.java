@@ -21,7 +21,6 @@ import java.util.concurrent.Future;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-@DisplayName("LectureDiscountService 동시성 테스트")
 class LectureDiscountConcurrencyTest {
 
     @Autowired
