@@ -54,8 +54,10 @@ public class LectureService {
             log.error("\u274c 커리큘럼 JSON 파싱 실패", e);
             throw new IllegalArgumentException("커리큘럼 형식이 올바르지 않습니다.");
         }
+        System.out.println("강사id::"+instructorId);
 
         String instructorName = authServiceClient.getTeacherName(accessToken, instructorId);
+        System.out.println("강사이름:: "+instructorName);
 
         Lecture lecture = Lecture.builder()
                 .title(title)
