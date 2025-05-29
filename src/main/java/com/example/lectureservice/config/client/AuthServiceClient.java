@@ -4,7 +4,6 @@ import com.example.lectureservice.dto.InstructorProfileResponseDTO;
 import com.example.lectureservice.dto.TeacherGetNameResponseDTO;
 import com.example.lectureservice.dto.UserIdRequestDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
