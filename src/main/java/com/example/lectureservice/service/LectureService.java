@@ -178,6 +178,6 @@ public class LectureService {
     public LectureResponse findById(Long id) {
         Lecture lecture = lectureRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "강의를 찾을 수 없습니다."));
-        return new LectureResponse(lecture.getId(), lecture.getTitle(), lecture.getInstructorName());
+        return new LectureResponse(lecture.getId(), lecture.getTitle(), lecture.getInstructorName(), lecture.getPrice());
     }
 }
