@@ -13,12 +13,12 @@ public class AuthServiceClient {
 
     private final WebClient authClient;
 
-    public String getTeacherName(String accessToken, Long userId) {
+    public String getTeacherName(String accessToken, Long id) {
         try {
             return authClient.post()
                     .uri("/auths/teacher/api/teacher-name")
                     .header("Authorization", "Bearer " + accessToken)
-                    .bodyValue(UserIdRequestDTO.builder().userId(userId).build())  // ⬅️ JSON body 설정
+                    .bodyValue(UserIdRequestDTO.builder().id(id).build())  // ⬅️ JSON body 설정
                     .retrieve()
                     .bodyToMono(TeacherGetNameResponseDTO.class)
                     .block()
@@ -28,10 +28,10 @@ public class AuthServiceClient {
         }
     }
 
-    public InstructorProfileResponseDTO getInstructorProfile(String accessToken, Long userId) {
+    public InstructorProfileResponseDTO getInstructorProfile(String accessToken, Long id) {
         try {
             return authClient.get()
-                    .uri("/auths/teacher/api/teachers/{userId}/profile", userId)
+                    .uri("/auths/teacher/api/teachers/{userId}/profile", id)
                     .header("Authorization", "Bearer " + accessToken)
                     .retrieve()
                     .bodyToMono(InstructorProfileResponseDTO.class)

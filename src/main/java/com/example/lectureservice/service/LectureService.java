@@ -39,7 +39,7 @@ public class LectureService {
 
     public void saveLecture(
             String accessToken,
-            Long instructorId,
+            Long id,
             String title,
             String description,
             String category,
@@ -54,9 +54,9 @@ public class LectureService {
             log.error("\u274c 커리큘럼 JSON 파싱 실패", e);
             throw new IllegalArgumentException("커리큘럼 형식이 올바르지 않습니다.");
         }
-        System.out.println("강사id::"+instructorId);
+        System.out.println("강사id::"+id);
 
-        String instructorName = authServiceClient.getTeacherName(accessToken, instructorId);
+        String instructorName = authServiceClient.getTeacherName(accessToken, id);
         System.out.println("강사이름:: "+instructorName);
 
         Lecture lecture = Lecture.builder()
@@ -64,7 +64,7 @@ public class LectureService {
                 .instructorName(instructorName)
                 .description(description)
                 .category(category)
-                .instructorId(instructorId)
+                .instructorId(id)
                 .price(4000)
                 .status(LectureStatus.PENDING)
                 .build();
@@ -74,13 +74,13 @@ public class LectureService {
         try {
             if (thumbnailFile != null && !thumbnailFile.isEmpty()) {
                 String ext = getExtension(thumbnailFile.getOriginalFilename());
-                String fileName = String.format("thumbnail_%d_%d.%s", savedLecture.getId(), instructorId, ext);
+                String fileName = String.format("thumbnail_%d_%d.%s", savedLecture.getId(), id, ext);
                 String thumbnailUrl = fileStorageService.saveFile(thumbnailFile, "thumbnails", fileName);
                 savedLecture.setThumbnailUrl(thumbnailUrl);
             }
             if (videoFile != null && !videoFile.isEmpty()) {
                 String ext = getExtension(videoFile.getOriginalFilename());
-                String fileName = String.format("lecture_%d_%d.%s", savedLecture.getId(), instructorId, ext);
+                String fileName = String.format("lecture_%d_%d.%s", savedLecture.getId(), id, ext);
                 String videoUrl = fileStorageService.saveFile(videoFile, "videos", fileName);
                 savedLecture.setVideoUrl(videoUrl);
             }
